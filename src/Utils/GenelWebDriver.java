@@ -32,7 +32,7 @@ public class GenelWebDriver {
         wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // sadece ana sayfa yüklenirken en başta
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30)); // bütün webElement için geçerli
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); // bütün webElement için geçerli
 
         driver.get("http://opencart.abstracta.us/index.php?route=account/login");
 
@@ -42,7 +42,7 @@ public class GenelWebDriver {
     void LoginTest()
     {
         WebElement inputEmail= driver.findElement(By.id("input-email"));
-        inputEmail.sendKeys("tenstng@gmail.com");
+        inputEmail.sendKeys("testng1@gmail.com");
 
         WebElement password= driver.findElement(By.id("input-password"));
         password.sendKeys("123qweasd");

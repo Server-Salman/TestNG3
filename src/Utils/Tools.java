@@ -18,7 +18,18 @@ public class Tools {
     {
         WebElement YeşilYazıDogrl= GenelWebDriver.driver.findElement
  (By.xpath("//*[@class='alert alert-success alert-dismissible']"));
-        Assert.assertTrue(YeşilYazıDogrl.getText().contains("Success"));
+        Assert.assertTrue(YeşilYazıDogrl.getText().toLowerCase().contains("success"));
+    }
+
+    public static void Bekle(int saniye)
+    {
+
+        try {
+            Thread.sleep(saniye*1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }
