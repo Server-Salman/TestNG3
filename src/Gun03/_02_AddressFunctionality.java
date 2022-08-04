@@ -9,13 +9,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 import javax.tools.Tool;
+import java.util.List;
 
 /*
        Senaryo;
        1- Siteyi açınız.
        2- Adress Ekleyiniz.
-       3- En son eklenen adresi edit yaparak ad ve soyadı değiştirip kaydediniz.
-       4- En son eklenen adresi siliniz.
+       3- En son adresi edit yaparak ad ve soyadı değiştirip kaydediniz.
+       4- En son adresi siliniz.
  */
 public class _02_AddressFunctionality extends GenelWebDriver {
 
@@ -53,13 +54,72 @@ public class _02_AddressFunctionality extends GenelWebDriver {
        Select countryS=new Select(country);
        countryS.selectByVisibleText("Turkey");
 
+       wait.until(ExpectedConditions.elementToBeClickable(country));
+       // wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector("select[id='input-zone']>option"))));
+       //bu elemanın bayatlamış hali gidene kadar bekle
+
        WebElement State=driver.findElement(By.id("input-zone"));
        Select state=new Select(State);
-       state.selectByVisibleText("Samsun");
+       state.selectByIndex(10);
+
+       WebElement defadres=driver.findElement(By.cssSelector("label [name='default'][value='1']"));
+       defadres.click();
+
+       WebElement ctn=driver.findElement(By.cssSelector("input[type='submit']"));
+       ctn.click();
+
+       Tools.successMessageValidation();
+   }
+
+   @Test(dependsOnMethods = {"addAddress"})
+   void editAddress()
+   {
+       WebElement addressBook= driver.findElement(By.linkText("Address Book"));
+       addressBook.click();
+
+       List<WebElement> editAll=driver.findElements(By.linkText("Edit"));  //*[text()='Edit']
+       WebElement sonEdit= editAll.get(editAll.size() - 1); // sonuncu edit
+       System.out.println("editAll = " + editAll.size());
+       sonEdit.click();
+
+       WebElement firsName=driver.findElement(By.id("input-firstname"));
+       firsName.clear();
+       firsName.sendKeys("Mehmet");
+
+       WebElement lastname=driver.findElement(By.id("input-lastname"));
+       lastname.clear();
+       lastname.sendKeys("Yılmaz");
+
+       WebElement ctn=driver.findElement(By.cssSelector("input[type='submit']"));
+       ctn.click();
+
+       Tools.successMessageValidation();
+   }
+
+   @Test(dependsOnMethods = {"editAddress"})
+   void deleteAddress()
+   {
+       WebElement addressBook= driver.findElement(By.linkText("Address Book"));
+       addressBook.click();
+
+       List<WebElement> deleteAll=driver.findElements(By.linkText("Delete"));
+       WebElement sonDelete= deleteAll.get(deleteAll.size() - 2);
+       sonDelete.click();
+
+       Tools.successMessageValidation();
+   }
 
 
 
-       /*
+
+
+}
+
+
+
+
+
+   /*
        WebElement country=driver.findElement(By.id("input-country"));
        Select countryS=new Select(country);
        countryS.selectByIndex(10);
@@ -83,17 +143,3 @@ public class _02_AddressFunctionality extends GenelWebDriver {
 
        state.selectByIndex(3);
        */
-
-       WebElement defadres=driver.findElement(By.cssSelector("label [name='default'][value='1']"));
-       defadres.click();
-
-       WebElement ctn=driver.findElement(By.cssSelector("input[type='submit']"));
-       ctn.click();
-
-       Tools.successMessageValidation();
-   }
-
-
-
-
-}
