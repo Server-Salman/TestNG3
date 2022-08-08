@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suit 1">
+    <test name="Test 1">
+        <parameter name="arananKelime" value="mac"></parameter>
+        <parameter name="browser" value="firefox"></parameter>
+        <classes>
+            <class name="Gun05._04_SearchFunctionality"></class>
+        </classes>
+    </test>
+    <test name="Test 2">
+        <parameter name="arananKelime" value="samsung"></parameter>
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="Gun05._04_SearchFunctionality"></class>
+        </classes>
+    </test>
+</suite>

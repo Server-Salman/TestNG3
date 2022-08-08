@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suit 1">
+    <test name="Test 1">
+        <!-- hangi gruplar çalıştırılacak-->
+        <groups>
+            <run>
+                <include name="SmokeTest"></include>
+                <include name="Regression"></include>
+            </run>
+        </groups>
+
+        <!--çalışcak classların yazıldığı bölüm-->
+        <classes>
+            <class name="Gun05._01_Groups"></class>
+        </classes>
+    </test>
+
+</suite>
