@@ -32,4 +32,11 @@ public class Tools {
 
     }
 
+    public static double WebElementToDouble(WebElement e) {
+        String result=e.getText();
+        result=result.replaceAll("[^\\d]","");
+        return Double.parseDouble(result);
+    }
+
+
 }
